@@ -1,0 +1,29 @@
+py0live protool documentation
+
+--- Protocol format ---
+
+x:x:x:x
+1:2:3:4:5:6
+
+(1) - Time in milliseconds
+(2) - A UUID of client/server
+(3) - Version of client/server
+(4) - Client/server id flag*
+(5) - Client/server status*
+(6) - Client/server data*
+
+--- * Client/Server id flag ---
+
+0 - Server
+1 - Client
+
+--- * Client/Server status ---
+
+50 - client handshake
+100 - client heart beat
+
+--- * Client/Server data --- 
+ 
+Data will be varible in length depending on the server/client interation.
+
+If no data is required this field with equal 0 
