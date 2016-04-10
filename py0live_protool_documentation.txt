@@ -1,4 +1,4 @@
-py0live protool documentation
+py0live protocol documentation
 
 --- Protocol format ---
 
@@ -24,6 +24,6 @@ x:x:x:x
 
 --- * Client/Server data --- 
  
-Data will be varible in length depending on the server/client interation.
+Data will be variable in length depending on the server/client interaction.
 
 If no data is required this field with equal 0 
