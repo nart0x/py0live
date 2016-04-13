@@ -1,6 +1,6 @@
 py0live protocol documentation
 
---- Protocol format ---
+=== Protocol format ===
 
 x:x:x:x
 1:2:3:4:5:6
@@ -8,21 +8,38 @@ x:x:x:x
 (1) - Time in milliseconds
 (2) - A UUID of client/server
 (3) - Version of client/server
-(4) - Client/server id flag*
-(5) - Client/server status*
-(6) - Client/server data*
+(4) - Client/server id flag
+(5) - Client/server status 
+(6) - Client/server data
 
---- * Client/Server id flag ---
 
-0 - Server
-1 - Client
+--- (1) Time ---
 
---- * Client/Server status ---
+Time in milliseconds
 
+
+--- (2) UUDID ----
+
+A randomly generated UUID used for host identification
+
+
+--- (3) Version ---
+
+Version number of client/server
+
+--- (4) Client/Server id flag ---
+
+s - Server
+c - Client
+
+--- (5) Client/Server status ---
+
+1 - client/server acknowledge
 50 - client handshake
-100 - client heart beat
+100 - client heartbeat
 
---- * Client/Server data --- 
+
+--- (6) Client/Server data --- 
  
 Data will be variable in length depending on the server/client interaction.
 
