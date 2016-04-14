@@ -93,17 +93,3 @@ if __name__ == "__main__":
 	server_thread.daemon = True
 	server_thread.start()
 	print "Server loop running in thread:", server_thread.name
-
-
-
-	'''
-	try:
-		#server.serve_forever()
-	except KeyboardInterrupt:
-		print 'KeyboardInterrupt'
-		server.shutdown()
-		server.server_close()
-	except: 
-		server.shutdown()
-		server.server_close()
-'''
