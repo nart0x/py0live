@@ -34,8 +34,9 @@ c - Client
 
 --- (5) Client/Server status ---
 
-1 - client/server acknowledge
+
 50 - client handshake
+69 - open client shell
 100 - client heartbeat
 
 
